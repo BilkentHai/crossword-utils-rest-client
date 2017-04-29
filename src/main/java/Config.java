@@ -1,6 +1,7 @@
 /**
  * Created by deniz on 26/04/17.
  */
+
 public class Config
 {
     public static final String SERVER_URL = "http://localhost:5000";
