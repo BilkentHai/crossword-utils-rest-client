@@ -56,9 +56,9 @@ public class RestClient
         return makePostRequest(postMethod, JsonString);
     }
 
-    public String wikiSearch(String ml)
+    public String wikiSearch(String ml, int wordLength)
     {
-        String JsonString = "{\"ml\":\"" + ml + "\"}";
+        String JsonString = "{\"ml\":\"" + ml + "\", \"word_length\": " + wordLength + "}";
         HttpPost postMethod = new HttpPost(Config.SERVER_URL + Config.WIKI_SEARCH_STRING);
 
         return makePostRequest(postMethod, JsonString);
