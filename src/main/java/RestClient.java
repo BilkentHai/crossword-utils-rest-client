@@ -31,9 +31,10 @@ public class RestClient
     }
 
     // document_analyzer methods
-    public String analyzeSearchResults(String query, int count)
+    public String analyzeSearchResults(String query, int length, int count)
     {
-        String JsonString = "{\"query\":\"" + query + "\", \"count\": " + count + "}";
+        String JsonString = "{\"query\":\" " + query + "\", \"length\": " + length + ", \"count\": " + count + "}";
+        System.out.println(JsonString);
         HttpPost postMethod = new HttpPost(Config.SERVER_URL + Config.ANALYZE_SEARCH_RESULT_STRING);
 
         return makePostRequest(postMethod, JsonString);
@@ -48,18 +49,27 @@ public class RestClient
         return makePostRequest(postMethod, JsonString);
     }
 
-    public String searchDatamuseWordenp(String ml)
-    {
-        String JsonString = "{\"ml\":\"" + ml + "\"}";
-        HttpPost postMethod = new HttpPost(Config.SERVER_URL + Config.SEARCH_DATAMUSE_WORDENP_STRING);
-
-        return makePostRequest(postMethod, JsonString);
-    }
-
     public String wikiSearch(String ml, int wordLength)
     {
         String JsonString = "{\"ml\":\"" + ml + "\", \"word_length\": " + wordLength + "}";
         HttpPost postMethod = new HttpPost(Config.SERVER_URL + Config.WIKI_SEARCH_STRING);
+
+        return makePostRequest(postMethod, JsonString);
+    }
+
+    // syn_ant methods
+    public String findAllSynonyms(String str, int wordLength)
+    {
+        String JsonString = "{\"str\":\"" + str + "\", \"word_length\": " + wordLength + "}";
+        HttpPost postMethod = new HttpPost(Config.SERVER_URL + Config.FIND_ALL_SYNONYMS_STRING);
+
+        return makePostRequest(postMethod, JsonString);
+    }
+
+    public String findAllAntonyms(String str, int wordLength)
+    {
+        String JsonString = "{\"str\":\"" + str + "\", \"word_length\": " + wordLength + "}";
+        HttpPost postMethod = new HttpPost(Config.SERVER_URL + Config.FIND_ALL_ANTONYMS_STRING);
 
         return makePostRequest(postMethod, JsonString);
     }
